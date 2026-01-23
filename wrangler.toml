@@ -33,7 +33,7 @@ new_sqlite_classes = ["RegionalFetcher"] # 声明新的 Durable Object 类，需
 # 环境变量配置
 [vars]
 # 允许的 CORS 来源白名单，多个来源用逗号分隔的 JSON 字符串数组表示
-ALLOWED_ORIGINS = '[https://*.workers.dev"]'
+ALLOWED_ORIGINS = '["https://*.workers.dev"]'
 # 是否启用 User-Agent 随机化，用于模拟不同客户端，默认为 "true"
 ENABLE_UA_RANDOMIZATION = "true"
 # 是否启用 Accept-Language 随机化，用于模拟不同语言偏好，默认为 "true"
