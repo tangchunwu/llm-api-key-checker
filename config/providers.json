@@ -236,5 +236,14 @@
     "apiStyle": "tavily",
     "defaultBase": "https://api.tavily.com",
     "defaultModel": ""
+  },
+  "custom": {
+    "label": "Custom (OpenAI 兼容)",
+    "icon": "⚙️",
+    "hasBalance": false,
+    "apiStyle": "openai",
+    "defaultBase": "https://your-api-endpoint.com/v1",
+    "defaultModel": "gpt-3.5-turbo",
+    "fetchModels": "fetchOpenAIModels"
   }
 }
