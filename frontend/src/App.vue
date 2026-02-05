@@ -82,6 +82,8 @@ const handleEscKey = (e) => {
  * @description 组件挂载时添加键盘事件监听器并初始化会话。
  */
 onMounted(() => {
+    // 初始化主题
+    uiStore.initTheme();
     // 在应用启动时调用会话初始化，为当前标签页分配唯一 ID。
     // 这是实现多页面任务隔离的关键步骤。
     checkerStore.initSession();
@@ -107,6 +109,9 @@ onBeforeUnmount(() => {
     <div class="page-wrapper">
         <div class="header">
             <h1>API KEY 检测工具</h1>
+            <button class="theme-toggle" @click="uiStore.toggleTheme" :title="uiStore.isDark ? '切换到亮色模式' : '切换到暗色模式'">
+                {{ uiStore.isDark ? '☀️' : '🌙' }}
+            </button>
         </div>
         <div class="main-grid">
             <div class="main-content">

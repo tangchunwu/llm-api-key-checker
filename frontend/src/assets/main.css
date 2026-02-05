@@ -9,38 +9,58 @@
 :root {
     /* === 颜色系统 - 温暖有机 === */
     /* 背景色 - 层级递进 */
-    --bg-paper: #FCFAF8;           /* 主背景：温暖象牙色 */
-    --bg-surface: #FFFFFF;          /* 卡片/面板背景 */
-    --bg-secondary: #F7F5F2;        /* 次要背景：更浅的暖灰 */
-    --bg-tertiary: #F0EDE8;         /* 第三层背景：用于嵌套区域 */
-    --bg-input: #FAFAF9;            /* 输入框背景 */
+    --bg-paper: #FCFAF8;
+    /* 主背景：温暖象牙色 */
+    --bg-surface: #FFFFFF;
+    /* 卡片/面板背景 */
+    --bg-secondary: #F7F5F2;
+    /* 次要背景：更浅的暖灰 */
+    --bg-tertiary: #F0EDE8;
+    /* 第三层背景：用于嵌套区域 */
+    --bg-input: #FAFAF9;
+    /* 输入框背景 */
 
     /* 文字颜色 */
-    --text-primary: #2D2D2D;        /* 主文字：炭灰色 */
-    --text-secondary: #6B6B6B;      /* 次要文字：温暖灰 */
-    --text-tertiary: #9B9B9B;       /* 辅助文字 */
+    --text-primary: #2D2D2D;
+    /* 主文字：炭灰色 */
+    --text-secondary: #6B6B6B;
+    /* 次要文字：温暖灰 */
+    --text-tertiary: #9B9B9B;
+    /* 辅助文字 */
 
     /* 边框颜色 */
-    --border-color: #E5E5E5;        /* 默认边框 */
-    --border-color-light: #EFEFEF;  /* 浅边框 */
-    --border-color-focus: #BFBFBF;  /* 焦点边框 */
+    --border-color: #E5E5E5;
+    /* 默认边框 */
+    --border-color-light: #EFEFEF;
+    /* 浅边框 */
+    --border-color-focus: #BFBFBF;
+    /* 焦点边框 */
 
     /* 强调色 */
-    --accent-primary: #D97757;      /* 赭石色 - 主要操作 */
+    --accent-primary: #D97757;
+    /* 赭石色 - 主要操作 */
     --accent-primary-hover: #C4664A;
-    --accent-dark: #2D2D2D;         /* 深色按钮 */
+    --accent-dark: #2D2D2D;
+    /* 深色按钮 */
     --accent-dark-hover: #1A1A1A;
-    --accent-success: #2E7D32;      /* 成功 */
+    --accent-success: #2E7D32;
+    /* 成功 */
     --accent-success-hover: #256929;
-    --accent-warning: #ED6C02;      /* 警告 */
-    --accent-error: #D32F2F;        /* 错误 */
+    --accent-warning: #ED6C02;
+    /* 警告 */
+    --accent-error: #D32F2F;
+    /* 错误 */
     --accent-error-hover: #B71C1C;
-    --accent-info: #3B82F6;         /* 信息 */
+    --accent-info: #3B82F6;
+    /* 信息 */
 
     /* 状态颜色 */
-    --bg-selected: #FDF5F3;         /* 选中状态背景 */
-    --bg-disabled: #BDBDBD;         /* 禁用状态背景 */
-    --text-secondary-hover: #5A5A5A; /* 次要文字悬停 */
+    --bg-selected: #FDF5F3;
+    /* 选中状态背景 */
+    --bg-disabled: #BDBDBD;
+    /* 禁用状态背景 */
+    --text-secondary-hover: #5A5A5A;
+    /* 次要文字悬停 */
 
     /* 阴影 */
     --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
@@ -63,6 +83,57 @@
     --line-height-tight: 1.4;
     --line-height-relaxed: 1.7;
 
+}
+
+[data-theme='dark'] {
+    /* === 颜色系统 - 深色模式 === */
+    /* 背景色 - 层级递进 */
+    --bg-paper: #121212;
+    /* 主背景：深灰黑 */
+    --bg-surface: #1E1E1E;
+    /* 卡片/面板背景 */
+    --bg-secondary: #2C2C2C;
+    /* 次要背景 */
+    --bg-tertiary: #383838;
+    /* 第三层背景 */
+    --bg-input: #242424;
+    /* 输入框背景 */
+
+    /* 文字颜色 */
+    --text-primary: #E0E0E0;
+    /* 主文字：浅灰 */
+    --text-secondary: #A0A0A0;
+    /* 次要文字 */
+    --text-tertiary: #757575;
+    /* 辅助文字 */
+
+    /* 边框颜色 */
+    --border-color: #333333;
+    /* 默认边框 */
+    --border-color-light: #2A2A2A;
+    /* 浅边框 */
+    --border-color-focus: #555555;
+    /* 焦点边框 */
+
+    /* 状态颜色调整 */
+    --bg-selected: #2D2622;
+    /* 选中状态背景 (带一点橙色调) */
+    --bg-disabled: #424242;
+    /* 禁用状态背景 */
+    --text-secondary-hover: #D0D0D0;
+
+    /* 强调色微调 (保持主要色调，稍微降低亮度以免刺眼，或者保持鲜亮) */
+    /* --accent-primary: #D97757;  保持不变 */
+    --accent-dark: #E0E0E0;
+    /* 深色按钮在深色模式下反转为亮色? 或者保持深色? 通常深色模式下Primary按钮还是醒目的颜色 */
+    --accent-dark: #D97757;
+    /* 让主要按钮在深色模式下使用品牌主色 */
+    --accent-dark-hover: #C4664A;
+
+    /* 阴影 - 深色模式阴影更深 */
+    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
 /* ========================================
@@ -103,8 +174,35 @@ body {
 
 /* 头部 */
 .header {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 32px;
+    position: relative;
+    padding: 0 20px;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--text-secondary);
+    transform: rotate(15deg);
 }
 
 /* 标题 - 使用衬线字体 */
@@ -303,8 +401,13 @@ textarea {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* ========================================

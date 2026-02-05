@@ -24,6 +24,8 @@ export const useUiStore = defineStore('ui', {
         modelSearch: '',
         /** @type {Function|null} 确认模态框的 Promise resolve 函数。*/
         confirmationPromise: null,
+        /** @type {string} 当前主题：'light' 或 'dark'。*/
+        theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
     }),
     getters: {
         /**
@@ -32,6 +34,12 @@ export const useUiStore = defineStore('ui', {
          * @returns {boolean} - 如果有模态框激活则返回 true。
          */
         isModalActive: (state) => !!state.activeModal,
+        /**
+         * @description 判断当前是否为暗色模式。
+         * @param {object} state - UI Store 的状态。
+         * @returns {boolean} - true 为暗色模式，false 为亮色模式。
+         */
+        isDark: (state) => state.theme === 'dark',
     },
     actions: {
         /**
@@ -123,6 +131,31 @@ export const useUiStore = defineStore('ui', {
             }
             this.activeModal = null;
             this.confirmationPromise = null;
+        },
+        /**
+         * @description 切换明亮/暗色主题。
+         * 自动更新 DOM 属性并持久化到 localStorage。
+         */
+        toggleTheme() {
+            this.theme = this.theme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', this.theme);
+            this.applyTheme();
+        },
+        /**
+         * @description 应用当前主题到 document 根元素。
+         */
+        applyTheme() {
+            if (this.theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        },
+        /**
+         * @description 初始化主题设置。
+         */
+        initTheme() {
+            this.applyTheme();
         }
     }
 });

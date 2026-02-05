@@ -38,8 +38,10 @@
                 :aria-label="`检测进度: ${checkerStore.progress}%`">
                 <div id="progressBar" :style="{ width: checkerStore.progress + '%' }"></div>
             </div>
-            <span id="progressText" aria-live="polite">{{ checkerStore.completedCount }} / {{ checkerStore.totalTasks }} ({{ checkerStore.progress
-            }}%)</span>
+            <div id="progressText" aria-live="polite">
+                <span>检测进度</span>
+                <span>{{ checkerStore.completedCount }} / {{ checkerStore.totalTasks }} ({{ checkerStore.progress }}%)</span>
+            </div>
         </div>
     </div>
 </template>
@@ -141,28 +143,41 @@ const checkerStore = useCheckerStore();
         gap: 8px;
         align-items: center;
         width: 100%;
+        margin-top: 8px; /* 增加一点顶部间距 */
     }
 
     .progress-bar-wrapper {
         width: 100%;
-        height: 10px;
-        background-color: var(--border-color);
-        border-radius: 5px;
+        height: 14px; /* 增加高度 */
+        background-color: var(--border-color-light); /* 更浅的背景 */
+        border-radius: 7px;
         overflow: hidden;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* 内部阴影 */
     }
 
     #progressBar {
         width: 0%;
         height: 100%;
         background: var(--accent-primary);
-        border-radius: 5px;
-        transition: width 0.3s ease;
+        border-radius: 7px;
+        transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的过渡 */
+        /* 可选：添加条纹效果（如果喜欢） */
+        /* background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent); */
+        /* background-size: 1rem 1rem; */
     }
 
     #progressText {
-        font-size: 0.9rem;
-        font-weight: 600;
-        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 500;
+        font-family: var(--font-mono); /* 使用等宽字体显示数字 */
         color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 4px;
+    }
+
+    #progressText span {
+        font-family: var(--font-sans);
     }
 </style>
