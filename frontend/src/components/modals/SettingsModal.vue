@@ -24,10 +24,11 @@
                     <div class="config-item">
                         <div class="label-with-hint">
                             <label for="concurrency">并发请求数</label>
-                            <span class="config-hint">(1-20)</span>
+                            <span class="config-hint">{{ configStore.concurrency }} / 20</span>
                         </div>
-                        <input id="concurrency" type="number" :value="configStore.concurrency"
-                            @input="handleConcurrencyInput" min="1" max="20">
+                        <div class="range-input-wrapper">
+                            <input id="concurrency-range" type="range" v-model.number="configStore.concurrency" min="1" max="20" class="range-slider">
+                        </div>
                     </div>
 
                     <div class="config-item">
@@ -51,62 +52,10 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount } from 'vue';
 import { useUiStore } from '@/stores/ui';
 import { useConfigStore } from '@/stores/config';
 const uiStore = useUiStore();
 const configStore = useConfigStore();
-
-/**
- * @description 存储 onblur 事件处理器引用，用于组件卸载时清理。
- */
-let currentBlurHandler = null;
-let currentInputElement = null;
-
-/**
- * @description 处理并发请求数的输入，确保其在有效范围内（1-20）。
- * @param {Event} event - 输入事件对象。
- */
-const handleConcurrencyInput = (event) => {
-    let value = parseInt(event.target.value, 10);
-
-    // 如果输入不是有效数字，则不进行处理
-    if (isNaN(value)) {
-        return;
-    }
-
-    // 清理之前的 blur 事件监听器
-    if (currentInputElement && currentBlurHandler) {
-        currentInputElement.removeEventListener('blur', currentBlurHandler);
-    }
-
-    // 创建新的 blur 事件处理器
-    currentBlurHandler = () => {
-        if (event.target.value === '' || parseInt(event.target.value, 10) < 1) {
-            configStore.concurrency = 1;
-        }
-    };
-    currentInputElement = event.target;
-    event.target.addEventListener('blur', currentBlurHandler, { once: true });
-
-    // 限制范围 1-20
-    if (value < 1) {
-        value = 1;
-    } else if (value > 20) {
-        value = 20;
-    }
-
-    configStore.concurrency = value;
-};
-
-/**
- * @description 组件卸载前清理事件监听器。
- */
-onBeforeUnmount(() => {
-    if (currentInputElement && currentBlurHandler) {
-        currentInputElement.removeEventListener('blur', currentBlurHandler);
-    }
-});
 </script>
 
 <style scoped>
@@ -214,5 +163,17 @@ onBeforeUnmount(() => {
         .region-list {
             grid-template-columns: 1fr;
         }
+    }
+    .range-input-wrapper {
+        display: flex;
+        align-items: center;
+        height: 40px;
+    }
+
+    .range-slider {
+        width: 100%;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
     }
 </style>

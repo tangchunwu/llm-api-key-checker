@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
+    "p-limit": "^7.3.0",
     "vite": "^5.2.0",
     "wrangler": "^4.30.0"
   }

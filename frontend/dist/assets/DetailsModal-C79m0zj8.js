@@ -1,4 +1,4 @@
-import{_ as u,u as p,o as n,c as r,a as s,F as _,r as f,t as d,b as c}from"./index-Dsx3_dKg.js";const b={class:"modal-content"},y={class:"modal-message raw-data"},g={class:"detail-key"},k={class:"modal-actions"},v={__name:"DetailsModal",setup(D){const a=p(),l=t=>t==null?"N/A":typeof t=="object"?JSON.stringify(t,null,2):String(t),m=()=>{let t="";for(const[o,e]of Object.entries(a.modalData))t&&(t+=`
+import{_ as u,u as p,o as n,c as r,a as s,F as _,r as f,t as d,b as c}from"./index-FtfsnWpW.js";const b={class:"modal-content"},y={class:"modal-message raw-data"},g={class:"detail-key"},k={class:"modal-actions"},v={__name:"DetailsModal",setup(D){const a=p(),l=t=>t==null?"N/A":typeof t=="object"?JSON.stringify(t,null,2):String(t),m=()=>{let t="";for(const[o,e]of Object.entries(a.modalData))t&&(t+=`
 
 ---
 

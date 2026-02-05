@@ -21,6 +21,7 @@
                     </div>
                 </div>
                 <button class="copy-btn" @click="copyTokens(category, title)">📋 复制</button>
+                <button class="export-btn" @click="exportTokens(category, title)">💾 导出</button>
             </div>
         </div>
         <input type="search" class="search-input" v-model="searchTerm" placeholder="🔍 在结果中搜索..."
@@ -185,6 +186,33 @@ const copyTokens = (category, title) => {
         console.error('复制失败:', err);
         uiStore.showToast("复制失败，请检查浏览器权限", "error");
     });
+};
+
+/**
+ * @description 导出当前类别下所有 Key 为 TXT 文件。
+ * @param {string} category - 结果类别。
+ * @param {string} title - 类别标题。
+ */
+const exportTokens = (category, title) => {
+    const tokensToExport = sortedResultsForCategory.value.map(r => r.token);
+    if (tokensToExport.length === 0) {
+        uiStore.showToast(`没有可导出的 ${title}`, "warning");
+        return;
+    }
+
+    const content = tokensToExport.join("\n");
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+    link.download = `llm-checker-${category}-${timestamp}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    uiStore.showToast(`${title} 已导出 (共 ${tokensToExport.length} 个)`, "success");
 };
 
 /**
@@ -442,10 +470,9 @@ watch(
         content: '📭';
     }
 
-    /* 复制按钮 */
-    .copy-btn {
+    .copy-btn,
+    .export-btn {
         padding: 0 16px;
-        background: var(--accent-success);
         color: white;
         border: none;
         border-radius: var(--radius-sm);
@@ -462,8 +489,22 @@ watch(
         height: 32px;
     }
 
+    .copy-btn {
+        background: var(--accent-success);
+    }
+
+    .export-btn {
+        background: var(--accent-primary);
+    }
+
     .copy-btn:hover {
         background: var(--accent-success-hover);
+        transform: translateY(-1px);
+    }
+
+    .export-btn:hover {
+        background: var(--accent-dark-hover); /* 使用暗色 hover 或自定义 */
+        filter: brightness(1.1);
         transform: translateY(-1px);
     }
 
