@@ -228,5 +228,13 @@
     "defaultBase": "https://open.bigmodel.cn/api/paas/v4",
     "defaultModel": "glm-4.5-air",
     "fetchModels": "fetchOpenAIModels"
+  },
+  "tavily": {
+    "label": "Tavily",
+    "icon": "🌐",
+    "hasBalance": false,
+    "apiStyle": "tavily",
+    "defaultBase": "https://api.tavily.com",
+    "defaultModel": ""
   }
 }

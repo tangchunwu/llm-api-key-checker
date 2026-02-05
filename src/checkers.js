@@ -278,6 +278,20 @@ const apiStrategies = {
             };
             return { url: apiUrl, options: { method: "POST", headers, body: JSON.stringify(body) } };
         }
+    },
+    tavily: {
+        buildRequest: (token, providerConfig) => {
+            const { baseUrl } = providerConfig;
+            const apiUrl = normalizeBaseUrl(baseUrl) + "/search";
+            const headers = { "Content-Type": "application/json" };
+            const body = {
+                api_key: token,
+                query: "test",
+                search_depth: "basic",
+                max_results: 1
+            };
+            return { url: apiUrl, options: { method: "POST", headers, body: JSON.stringify(body) } };
+        }
     }
 };
 
@@ -295,6 +309,10 @@ async function checkAnthropicToken(token, providerMeta, providerConfig, env) {
 
 async function checkGeminiToken(token, providerMeta, providerConfig, env) {
     return await _checkTokenTemplate(token, providerMeta, providerConfig, env, apiStrategies.gemini);
+}
+
+async function checkTavilyToken(token, providerMeta, providerConfig, env) {
+    return await _checkTokenTemplate(token, providerMeta, providerConfig, env, apiStrategies.tavily);
 }
 
 /**
@@ -320,6 +338,9 @@ export async function checkToken(token, providerMeta, providerConfig, env) {
             break;
         case "gemini":
             checkerFunction = checkGeminiToken;
+            break;
+        case "tavily":
+            checkerFunction = checkTavilyToken;
             break;
         default:
             return { token, isValid: false, message: "不支持的提供商类型", error: true };
